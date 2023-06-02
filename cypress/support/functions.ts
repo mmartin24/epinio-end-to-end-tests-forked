@@ -176,7 +176,7 @@ Cypress.Commands.overwrite('type', (originalFn, subject, text, options = {}) => 
 
 // Add a delay between command without using cy.wait()
 // https://github.com/cypress-io/cypress/issues/249#issuecomment-443021084
-const COMMAND_DELAY = 1000;
+const COMMAND_DELAY = 200;
 
 for (const command of ['visit', 'click', 'trigger', 'type', 'clear', 'reload', 'contains']) {
     Cypress.Commands.overwrite(command, (originalFn, ...args) => {
