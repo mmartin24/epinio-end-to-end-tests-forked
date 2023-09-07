@@ -130,7 +130,7 @@ jobs:
           config-file: cypress.config.ts
 
       - name: Copying screenshots and videos to Mochawesome report
-        if: always()
+        if: failure()
         run: |
           mkdir -p mochawesome-report
           cp -r cypress/screenshots mochawesome-report || echo "No screenshots found in this run, probably all tests were OK"     
@@ -188,7 +188,7 @@ jobs:
           config-file: cypress.config.ts
 
       - name: Copying screenshots and videos to Mochawesome report
-        if: always()
+        if: failure()
         run: |
           mkdir -p mochawesome-report
           cp -r cypress/screenshots mochawesome-report || echo "No screenshots found in this run, probably all tests were OK"     
