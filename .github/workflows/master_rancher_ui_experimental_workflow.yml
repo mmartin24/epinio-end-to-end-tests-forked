@@ -24,7 +24,8 @@ on:
           required: true
           type: string
           # Default working cypress image for Chrome browser 
-          default: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+          # default: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+          default: cypress/browsers:node-20.5.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
         cypress_test:
           description: Scenario to test (once Epinio is installed)
           required: true
@@ -45,7 +46,7 @@ on:
           description: Choose rancher version to deploy
           required: true
           type: string
-          default: '2.7.3'
+          default: '2.7.5'
 
 jobs:
   installation:
@@ -246,7 +247,7 @@ jobs:
           config-file: cypress.config.ts
 
       - name: Copying screenshots and videos to Mochawesome report
-        if: always()
+        if: failure()
         run: |
           mkdir -p mochawesome-report
           cp -r cypress/screenshots mochawesome-report || echo "No screenshots found in this run, probably all tests were OK"     
