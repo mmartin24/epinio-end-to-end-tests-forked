@@ -502,7 +502,7 @@ Cypress.Commands.add('createApp', ({appName, archiveName, sourceType, customPake
   if (addVar === 'ui') {
     cy.get('.key-value > .footer > .add').click();
     cy.typeKeyValue({key: '.kv-item.key > input', value: 'PORT'});
-    cy.typeKeyValue({key: '.kv-item.value > textarea', value: '8080'});
+    cy.typeKeyValue({key: '.kv-item.value', value: '8080'});
 
   } else if (addVar === 'file') {
     cy.get('input[type="file"]').attachFile({filePath: envFile});
@@ -533,7 +533,7 @@ Cypress.Commands.add('createApp', ({appName, archiveName, sourceType, customPake
   if (addVar === 'go_example') {
     cy.get('.key-value > .footer > .add').click();
     cy.typeKeyValue({key: '.kv-item.key > input', value: 'BP_KEEP_FILES'});
-    cy.typeKeyValue({key: '.kv-item.value > textarea', value: 'static/*'});
+    cy.typeKeyValue({key: '.kv-item.value', value: 'static/*'});
   }
   
   // Set the desired number of instances
