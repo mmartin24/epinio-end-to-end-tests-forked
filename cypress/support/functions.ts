@@ -454,7 +454,10 @@ Cypress.Commands.add('createApp', ({appName, archiveName, sourceType, customPake
   if (manifestName) {
     // Rename downloaded file and upload
     cy.exec(`mv cypress/downloads/* cypress/downloads/${manifestName}`,{failOnNonZeroExit: false})
-    cy.get('input[type="file"]').eq(0).attachFile({filePath: `../downloads/${manifestName}`, mimeType: 'application/octet-stream'});
+    cy.wait(7500)
+    cy.then(() => {
+      cy.get('input[type="file"]').eq(0).attachFile({filePath: `../downloads/${manifestName}`, mimeType: 'application/octet-stream'});
+      })
   }
 
   // Use a custom Paketo Build Image if needed
@@ -810,8 +813,12 @@ Cypress.Commands.add('redeployFromCommit', ({gitCommit}) => {
   cy.contains('Edit:').should('be.visible');
   // Wait for button 'Done' to be enabled ( or 'not disabled')
   cy.get('button.btn.role-primary[disabled]', {timeout: 120000}).should('not.exist')
-  // Close all tabs to clear screen
-  cy.get('.tab > .closer').click({ multiple: true });
+  // Close all ºtabs to clear screen
+  cy.then(() => { 
+    cy.get('.tab > .closer').each(($el) => {
+    cy.wrap($el).click()
+      })
+    })
   // Application is created!
   cy.clickButton('Done');
 })
