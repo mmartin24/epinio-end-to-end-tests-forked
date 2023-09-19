@@ -149,6 +149,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
+          browser: chrome
           name: cypress-videos-install
           path: cypress/videos
           retention-days: 7
@@ -207,6 +208,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
+          browser: chrome
           name: cypress-videos-tests
           path: cypress/videos
           retention-days: 7
@@ -266,6 +268,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
+          browser: chrome
           name: cypress-videos-uninstall
           path: cypress/videos
           retention-days: 7
