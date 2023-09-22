@@ -12,7 +12,8 @@ jobs:
     uses: ./.github/workflows/master_rancher_ui_workflow.yml
     with:
       browser: firefox
-      cypress_image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      # cypress_image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      cypress_image: cypress/included:13.0.0
       cypress_install_test: installation.spec.ts
       # cypress_test: with_s3_and_external_registry.spec.ts
       cypress_test: menu.spec.ts
