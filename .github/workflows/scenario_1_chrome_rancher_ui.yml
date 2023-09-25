@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '30 2 * * *'
 
 jobs:
   rancher-chrome:
@@ -17,7 +17,7 @@ jobs:
       cypress_install_test: installation.spec.ts
       # cypress_test: with_default_options.spec.ts
       cypress_test: menu.spec.ts
-      runner: ui-e2e-0
+      runner: dhcp149
     secrets: inherit
 
   rancher-chrome-s3gw:
@@ -32,5 +32,5 @@ jobs:
       cypress_test: applications.spec.ts
       grep_test_by_tag: '@appl-1'
       s3_store_type: s3gw
-      runner: ui-e2e
+      runner: dhcp85
     secrets: inherit
