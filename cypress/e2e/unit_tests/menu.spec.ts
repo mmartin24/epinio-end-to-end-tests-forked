@@ -65,7 +65,9 @@ describe('Menu testing', () => {
     // Go to About page
     cy.get('.version.text-muted > a').click();
     // Check binaries number, download them and chek See All Package page
-    cy.aboutPageFunction({ checkBinariesNumberInAboutPage: true, downloadBinaries: true, checkSeeAllPackagePage: true })
+    // Turning to "false" options "downloadBinaries" and "checkSeeAllPackagePage" until version 1.11-rc is gone
+    // TO DO: turn back to "true" when final no rc is present
+    cy.aboutPageFunction({ checkBinariesNumberInAboutPage: true, downloadBinaries: false, checkSeeAllPackagePage: false })
   });
 
 
@@ -151,7 +153,11 @@ describe('Dex testing', () => {
     cy.dexLogin('admin@epinio.io', 'password');
   });
 
-  it('Check users not allowed cannot connect to Dex', { tags: '@dex-2' }, () => {
+  it('Check Dex login works with non-admin granted access', { tags: '@dex-2' }, () => {
+    cy.dexLogin('epinio@epinio.io', 'password');
+  });
+
+  it('Check users not allowed cannot connect to Dex', { tags: '@dex-3' }, () => {
     cy.dexLogin('invalid-mail@epinio.io', 'password', { checkLandingPage: false });
     cy.contains('Invalid Email Address and password').should('be.visible');
   });
